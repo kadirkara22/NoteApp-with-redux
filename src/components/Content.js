@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addColor, addNote, selectColors, selectNotes } from '../redux/notes/notesSlice';
+import { addColor, addNote, filteredNotes, selectColors, selectNotes } from '../redux/notes/notesSlice';
 
 
 
@@ -56,14 +56,7 @@ const Content = () => {
         localStorage.setItem("Notes", JSON.stringify(notesList));
     }
 
-    useEffect(() => {
-        const notes = localStorage.getItem("Notes")
 
-        if (notes) {
-            const getNotes = JSON.parse(notes)
-            setTitle(getNotes)
-        }
-    }, [])
 
     return (
         <form className="content" >

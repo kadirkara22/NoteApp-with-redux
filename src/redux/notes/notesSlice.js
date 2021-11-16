@@ -4,12 +4,12 @@ export const notesSlice = createSlice({
     name: "notes",
     initialState: {
         items: [
-            {
-                id: '',
-                title: "",
-                color: "",
-
-            },
+            /*   {
+                  id: "",
+                  title: "",
+                  color: "",
+  
+              }, */
         ]
     },
     reducers: {
@@ -23,16 +23,31 @@ export const notesSlice = createSlice({
                         id: nanoid(),
                         title,
                         color,
-                        selected: false
                     }
                 }
             }
         },
         filteredNotes: (state, action) => {
-            const filteredNote = state.items.filter((item) => {
+            const notes = localStorage.getItem("Notes")
+            const getNotes = JSON.parse(notes)
+            const filteredNote = getNotes.filter((item) => {
                 return (item.title.toLowerCase().includes(action.payload))
             })
-            state.items = filteredNote
+            if (filteredNote) {
+                state.items = filteredNote;
+            }
+
+
+
+        },
+        deleteNotes: (state, action) => {
+            const notes = localStorage.getItem("Notes")
+            const getNotes = JSON.parse(notes)
+            const id = action.payload;
+            const filtered = getNotes.find((item) => item.id !== id);
+            if (filtered) {
+                state.items = filtered;
+            }
         }
 
 
@@ -42,5 +57,5 @@ export const notesSlice = createSlice({
 export const selectNotes = (state) => state.notes.items;
 
 
-export const { addNote, filteredNotes } = notesSlice.actions;
+export const { addNote, filteredNotes, deleteNotes } = notesSlice.actions;
 export default notesSlice.reducer;

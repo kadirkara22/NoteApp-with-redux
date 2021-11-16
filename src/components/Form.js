@@ -1,29 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { filteredNotes } from '../redux/notes/notesSlice';
 
 
 const Form = () => {
 
-    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
     const dispatch = useDispatch();
 
     const search = (state) => state.notes.items
 
     const handleFilter = (e) => {
-        setTitle(e.target.value)
-        dispatch(filteredNotes(e.target.value.toLowerCase()))
-
+        setText(e.target.value)
+        dispatch(filteredNotes(text.toLowerCase()))
     }
 
-    console.log(search)
+
     return (
         <>
             <form>
                 <input className="search"
                     placeholder="Search..."
                     autoFocus
-                    value={title}
+                    value={text}
                     onChange={handleFilter}
                 />
             </form>
