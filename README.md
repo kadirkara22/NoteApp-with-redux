@@ -4,4 +4,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## https://newnotesapp.netlify.app/
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/kadirkara22/NoteApp-with-redux/blob/main/src/image/notesOdev.PNG)
